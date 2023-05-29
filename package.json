@@ -1,0 +1,12 @@
+{
+  "name": "homework__lesson-4",
+  "version": "1.0.0",
+  "description": "homework",
+  "main": "auth.js",
+  "scripts": {
+    "start": "node auth.js"
+  },
+  "author": "Anna Danielyan",
+  "license": "ISC",
+  "type": "module"
+}
