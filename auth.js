@@ -88,9 +88,11 @@ process.stdin.on('data', (data) => {
     });
   }
 
-  if (input == 'add new_file_name') {
+  const arrInput = input.split(' ');
+
+  if (arrInput[0] === 'add' && arrInput.length === 2) {
     return fsPromises
-      .writeFile('new_file_name', '')
+      .writeFile(arrInput.at(-1), '')
       .then(() => {
         console.log(`Empty file created successfully.`);
       })
@@ -99,9 +101,9 @@ process.stdin.on('data', (data) => {
       });
   }
 
-  if (input === 'rn path_to_file new_file_name') {
+  if (arrInput[0] === 'rn' && arrInput.length === 3) {
     return fsPromises
-      .rename('new_file_name', 'path_to_file')
+      .rename(arrInput[1], arrInput.at(-1))
       .then(() => {
         console.log('File renamed successfully.');
       })
@@ -110,9 +112,9 @@ process.stdin.on('data', (data) => {
       });
   }
 
-  if (input === 'cp path_to_file path_to_new_directory') {
+  if (arrInput[0] === 'cp' && arrInput.length === 3) {
     return fsPromises
-      .copyFile('path_to_file', 'path_to_new_directory')
+      .copyFile(arrInput[1], arrInput.at(-1))
       .then(() => {
         console.log('File copied successfully.');
       })
@@ -121,9 +123,9 @@ process.stdin.on('data', (data) => {
       });
   }
 
-  if (input === 'mv path_to_file path_to_new_directory') {
+  if (arrInput[0] === 'mv' && arrInput.length === 3) {
     return fsPromises
-      .rename('path_to_file', 'path_to_new_directory')
+      .rename(arrInput[1], arrInput.at(-1))
       .then(() => {
         console.log('File moved');
       })
@@ -132,9 +134,9 @@ process.stdin.on('data', (data) => {
       });
   }
 
-  if (input === 'rm path_to_file') {
+  if (arrInput[0] === 'rm' && arrInput.length === 2) {
     return fsPromises
-      .unlink('path_to_new_directory', error)
+      .unlink(arrInput.at(-1), error)
       .then(() => {
         console.log('File has been removed');
       })
